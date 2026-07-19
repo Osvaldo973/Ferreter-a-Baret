@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | Ferretería Baret</title>
+    <meta name="description" content="Conoce la misión, visión, valores y la trayectoria histórica de Ferretería Baret, tu socio confiable en herramientas y construcción.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-info">
+            <span><i class="fa-solid fa-phone"></i> (555) 123-4567</span>
+            <span><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</span>
+        </div>
+        <div class="container top-bar-links" style="justify-content: flex-end; display: flex;">
+            <a href="#">Ayuda</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="admin.html" style="color: var(--accent-orange);"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-hammer"></i>
+                Ferretería <span>Baret</span>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html" class="active">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Sobre Nosotros</h1>
+                <p>Conoce la historia, los valores y el compromiso que definen a Ferretería Baret como tu aliado en cada proyecto.</p>
+            </div>
+        </section>
+
+        <!-- Misión, Visión, Valores -->
+        <section class="about section-padding background-light">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label">Quiénes Somos</span>
+                    <h2>Nuestra Identidad</h2>
+                    <p>Valores fundamentales que guían cada una de nuestras decisiones</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-card reveal">
+                        <div class="icon-wrapper"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Visión</h3>
+                        <p>Ser la ferretería líder en la región, reconocida por la excelencia en la atención al cliente, la calidad incomparable de nuestros productos y el firme compromiso con el desarrollo de proyectos sostenibles de nuestra comunidad.</p>
+                    </div>
+                    <div class="about-card reveal">
+                        <div class="icon-wrapper"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>Misión</h3>
+                        <p>Proveer a contratistas, plomeros y familias con las mejores soluciones en herramientas y materiales, garantizando asesoría técnica especializada y un servicio de entrega rápido que optimice tiempos y costos.</p>
+                    </div>
+                    <div class="about-card reveal">
+                        <div class="icon-wrapper"><i class="fa-solid fa-handshake"></i></div>
+                        <h3>Valores</h3>
+                        <p>Nuestra base operativa descansa sobre la honestidad comercial, la responsabilidad social y ambiental, el respeto al cliente y un espíritu de mejora continua e innovación constante en todos nuestros servicios.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Línea de Tiempo (Historia) -->
+        <section class="timeline-section section-padding">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label">Nuestra Trayectoria</span>
+                    <h2>Nuestra Historia</h2>
+                    <p>Un recorrido por los hitos y momentos más importantes en nuestro crecimiento</p>
+                </div>
+                
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2010</div>
+                        <div class="timeline-content">
+                            <h3>Fundación de Ferretería Baret</h3>
+                            <p>Abrimos nuestras puertas con un pequeño local familiar en el centro de la ciudad, enfocados en materiales de plomería y herramientas básicas, pero con la clara visión de crecer junto a la comunidad.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2015</div>
+                        <div class="timeline-content">
+                            <h3>Ampliación Logística</h3>
+                            <p>Inauguramos nuestro primer gran almacén de abastecimiento, lo que nos permitió incorporar materiales pesados de construcción y lanzar el servicio de entrega express directo en obra.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2021</div>
+                        <div class="timeline-content">
+                            <h3>Alianzas con Marcas Líderes</h3>
+                            <p>Consolidamos convenios directos de distribución con corporaciones como Truper, Stanley y Argos, garantizando inventarios constantes y los mejores precios del mercado de República Dominicana.</p>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="timeline-item reveal">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2026</div>
+                        <div class="timeline-content">
+                            <h3>Transformación e Innovación</h3>
+                            <p>Renovamos toda nuestra infraestructura tecnológica, introduciendo el catálogo digital interactivo, soporte telefónico profesional y compras directas por mensajería instantánea para máxima comodidad de nuestros clientes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Confianza -->
+        <section class="trust-features section-padding" style="background-color: #1A1A1A; color: white;">
+            <div class="container">
+                <div class="section-title reveal" style="margin-bottom: 40px;">
+                    <span class="section-label" style="color: var(--accent-sky);">¿Por qué nosotros?</span>
+                    <h2 style="color: white;">La diferencia Baret</h2>
+                </div>
+                <div class="trust-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; text-align: center;">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-award" style="font-size: 2.5rem; color: var(--accent-sky); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Garantía de Calidad</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Trabajamos únicamente con marcas oficiales y productos certificados.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-users" style="font-size: 2.5rem; color: var(--accent-sky); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Servicio Humano</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Atención de persona a persona con expertos que te asesoran sin costo.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-truck" style="font-size: 2.5rem; color: var(--accent-sky); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Flotilla Propia</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Contamos con camiones propios para garantizar entregas puntuales y seguras.</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-coins" style="font-size: 2.5rem; color: var(--accent-sky); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Precios transparentes</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Sin recargos ocultos ni intermediarios en tus cotizaciones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo footer-logo">
+                    <i class="fa-solid fa-hammer"></i>
+                    Ferretería <span>Baret</span>
+                </a>
+                <p>Tu socio confiable en materiales y herramientas de construcción, proporcionando soluciones de plomería y entregas a domicilio oportunas.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fa-solid fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul>
+                    <li>Lunes - Viernes: 8:00 AM - 6:00 PM</li>
+                    <li>Sábados: 8:00 AM - 2:00 PM</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Ferretería Baret. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Producto añadido al carrito</div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here via JS -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="checkout-form" id="checkout-form" style="display: none; margin-top: 15px;">
+                <input type="text" id="checkout-nombre" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="text" id="checkout-apellido" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="tel" id="checkout-telefono" placeholder="Teléfono" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" id="btn-comprar">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/18096090047" target="_blank" class="whatsapp-btn" aria-label="Chat en WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

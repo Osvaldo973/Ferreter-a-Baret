@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferretería Baret | Construcción y Plomería</title>
+    <meta name="description" content="Ferretería Baret, tu mejor opción en herramientas, materiales de construcción, plomería y servicio a domicilio.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-info">
+            <span><i class="fa-solid fa-phone"></i> (555) 123-4567</span>
+            <span><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</span>
+        </div>
+        <div class="container top-bar-links" style="justify-content: flex-end; display: flex;">
+            <a href="#">Ayuda</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="admin.html" style="color: var(--accent-orange);"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-hammer"></i>
+                Ferretería <span>Baret</span>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1>Construye con confianza, construye con <span>Ferretería Baret</span></h1>
+                <p>Materiales de calidad, plomería experta, herramientas profesionales y el mejor servicio a domicilio para todos tus proyectos de construcción y remodelación.</p>
+                <div class="hero-buttons">
+                    <a href="productos.html" class="btn btn-primary">Ver Productos</a>
+                    <a href="servicios.html" class="btn btn-outline">Nuestros Servicios</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Features (Estilo Ferremix) -->
+        <section class="trust-features section-padding" style="background-color: #1A1A1A; color: white; padding: 40px 0;">
+            <div class="container">
+                <div class="trust-grid reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                    <div class="trust-item">
+                        <i class="fa-solid fa-truck-fast" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Envío Rápido</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">A todo el país</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Compra Segura</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">100% garantizado</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-headset" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Soporte 24/7</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Asesoría de expertos</p>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fa-solid fa-rotate-left" style="font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 15px;"></i>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 5px;">Devoluciones</h3>
+                        <p style="font-size: 0.9rem; color: #9CA3AF;">Hasta 30 días</p>
+                    </div>
+                </div>
+            </div>
+             </div>
+        </section>
+
+        <!-- Sección de Ofertas Especiales -->
+        <section id="ofertas" class="products section-padding">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label" style="color: var(--accent-orange);">Ofertas de la Semana</span>
+                    <h2>Ofertas Especiales</h2>
+                    <p>Aprovecha nuestros descuentos por tiempo limitado</p>
+                </div>
+                <div class="product-grid" id="ofertas-grid">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Artículos Recomendados -->
+        <section id="recomendados" class="products section-padding background-light">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label">Destacados</span>
+                    <h2>Artículos Recomendados</h2>
+                    <p>Los productos más buscados por nuestros clientes</p>
+                </div>
+                <div class="product-grid" id="recomendados-grid">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Sección de Marcas -->
+        <section id="marcas" class="section-padding">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label">Calidad Garantizada</span>
+                    <h2>Nuestras Marcas</h2>
+                </div>
+                <div class="brands-container reveal" id="brands-container" style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; align-items: center; padding: 20px 0;">
+                    <!-- Dinámico -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="#" class="logo footer-logo">
+                    <i class="fa-solid fa-hammer"></i>
+                    Ferretería <span>Baret</span>
+                </a>
+                <p>Tu socio confiable en materiales y herramientas de construcción, proporcionando soluciones de plomería y entregas a domicilio oportunas.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fa-solid fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul>
+                    <li>Lunes - Viernes: 8:00 AM - 6:00 PM</li>
+                    <li>Sábados: 8:00 AM - 2:00 PM</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Ferretería Baret. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Producto añadido al carrito</div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here via JS -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="checkout-form" id="checkout-form" style="display: none; margin-top: 15px;">
+                <input type="text" id="checkout-nombre" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="text" id="checkout-apellido" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="tel" id="checkout-telefono" placeholder="Teléfono" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" id="btn-comprar">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/18096090047" target="_blank" class="whatsapp-btn" aria-label="Chat en WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

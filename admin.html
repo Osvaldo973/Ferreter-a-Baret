@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Ferretería Baret</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-nav { display: flex; gap: 15px; margin-bottom: 20px; }
+        .admin-tab { cursor: pointer; padding: 10px 20px; border-radius: var(--border-radius); font-weight: 600; background: var(--bg-light); transition: all 0.3s; color: var(--text-muted); }
+        .admin-tab:hover { background: #e5e7eb; }
+        .admin-tab.active { background: var(--primary-blue); color: white; }
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: var(--shadow-soft); border-radius: var(--border-radius); overflow: hidden;}
+        .data-table th, .data-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .data-table th { background: var(--bg-light); font-weight: 700; }
+        .action-btn { background: none; border: none; cursor: pointer; font-size: 1.1rem; margin-right: 10px; transition: color 0.3s; }
+        .btn-edit { color: var(--accent-blue); }
+        .btn-delete { color: #EF4444; }
+        .admin-layout { padding-top: 100px; min-height: 80vh; padding-bottom: 50px;}
+        #login-section { max-width: 400px; margin: 50px auto; background: white; padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow-soft); border-top: 5px solid var(--primary-blue); }
+        #dashboard-section { display: none; }
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;}
+    </style>
+</head>
+<body class="background-light">
+    <header class="navbar" style="top: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 15px 0;">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-hammer"></i>
+                Ferretería <span>Baret</span> <span style="font-size: 0.8em; color: var(--text-muted); font-weight: 400; margin-left: 10px;">| Admin</span>
+            </a>
+            <div class="nav-links" style="display:flex;">
+                <a href="index.html" style="color:var(--text-main); display:flex; align-items:center; gap:8px;"><i class="fa-solid fa-arrow-left"></i> Volver a la tienda</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container admin-layout">
+        <!-- Login -->
+        <div id="login-section">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fa-solid fa-shield-halved fa-3x" style="color: var(--primary-blue); margin-bottom: 15px;"></i>
+                <h2>Acceso Administrador</h2>
+                <p style="color: var(--text-muted); font-size: 0.9em; margin-top: 5px;">Por defecto: admin / admin</p>
+            </div>
+            
+            <form id="form-login">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" id="login-user" class="form-control" placeholder="Ingresa tu usuario" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="login-pass" class="form-control" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" style="width:100%; margin-top: 10px;">Iniciar Sesión</button>
+                <p id="login-error" style="color:#EF4444; font-size:0.9rem; margin-top:10px; text-align:center; display:none;">Usuario o contraseña incorrectos</p>
+            </form>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="dashboard-section">
+            <div class="header-actions">
+                <div>
+                    <h2>Panel de Control</h2>
+                    <p style="color: var(--text-muted);">Bienvenido, <span id="current-admin-name" style="font-weight: 600;">Admin</span></p>
+                </div>
+                <button class="btn btn-outline" id="btn-logout" style="color:var(--text-main); border-color:var(--text-main); padding: 8px 15px; font-size:0.9rem;"><i class="fa-solid fa-right-from-bracket"></i> Salir</button>
+            </div>
+
+            <div class="admin-nav">
+                <div class="admin-tab active" data-target="sec-productos"><i class="fa-solid fa-box-open"></i> Productos</div>
+                <div class="admin-tab" data-target="sec-marcas"><i class="fa-solid fa-tags"></i> Marcas</div>
+                <div class="admin-tab" data-target="sec-admins"><i class="fa-solid fa-users-gear"></i> Administradores</div>
+            </div>
+
+            <!-- Manage Products -->
+            <div id="sec-productos" class="admin-section active">
+                <div style="display:flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1; min-width: 300px; background:white; padding:25px; border-radius:var(--border-radius); box-shadow:var(--shadow-soft);">
+                        <h3 id="product-form-title" style="margin-bottom:20px; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Añadir Nuevo Producto</h3>
+                        <form id="form-product">
+                            <input type="hidden" id="prod-id">
+                            <div class="form-group">
+                                <label>Nombre del Producto</label>
+                                <input type="text" id="prod-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Precio ($)</label>
+                                <input type="number" id="prod-price" class="form-control" step="0.01" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Categoría</label>
+                                <input type="text" id="prod-category" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Icono (Clase Icono FontAwesome)</label>
+                                <input type="text" id="prod-icon" class="form-control" value="fa-box" placeholder="ej. fa-wrench, fa-paint-roller" required>
+                                <small style="color: var(--text-muted);">Chequea íconos en FontAwesome Free</small>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 20px;">
+                                <input type="checkbox" id="prod-recommended" style="width: 18px; height: 18px;">
+                                <label for="prod-recommended" style="margin-bottom: 0;">Artículo Recomendado (Aparecerá en Destacados)</label>
+                            </div>
+                            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                                <input type="checkbox" id="prod-offer" style="width: 18px; height: 18px;">
+                                <label for="prod-offer" style="margin-bottom: 0;">En Oferta Especial</label>
+                            </div>
+                            <div class="form-group" id="offer-price-group" style="display: none;">
+                                <label>Precio de Oferta ($)</label>
+                                <input type="number" id="prod-discount-price" class="form-control" step="0.01" min="0">
+                            </div>
+                            <div style="display:flex; gap: 10px; margin-top:20px;">
+                                <button type="submit" class="btn btn-primary" id="btn-save-prod" style="flex:1;">Guardar Producto</button>
+                                <button type="button" class="btn btn-outline" id="btn-cancel-prod" style="display:none; color:var(--text-main); border-color:var(--border-color);">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="flex: 2; min-width: 300px; overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-product-list">
+                                <!-- Renderizado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Brands -->
+            <div id="sec-marcas" class="admin-section">
+                <div style="display:flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1; min-width: 300px; background:white; padding:25px; border-radius:var(--border-radius); box-shadow:var(--shadow-soft);">
+                        <h3 style="margin-bottom:20px; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Añadir Marca</h3>
+                        <form id="form-brand">
+                            <input type="hidden" id="brand-id">
+                            <div class="form-group">
+                                <label>Nombre de la Marca</label>
+                                <input type="text" id="brand-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>URL del Logo (Opcional)</label>
+                                <input type="url" id="brand-logo" class="form-control" placeholder="https://ejemplo.com/logo.png">
+                            </div>
+                            <div style="display:flex; gap: 10px; margin-top:20px;">
+                                <button type="submit" class="btn btn-primary" id="btn-save-brand" style="flex:1;">Guardar Marca</button>
+                                <button type="button" class="btn btn-outline" id="btn-cancel-brand" style="display:none; color:var(--text-main); border-color:var(--border-color);">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div style="flex: 2; min-width: 300px; overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Logo / Nombre</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-brand-list">
+                                <!-- Renderizado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Admins -->
+            <div id="sec-admins" class="admin-section">
+                <div style="display:flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;">
+                    <div style="flex: 1; min-width: 300px; background:white; padding:25px; border-radius:var(--border-radius); box-shadow:var(--shadow-soft);">
+                        <h3 style="margin-bottom:20px; border-bottom: 1px solid var(--border-color); padding-bottom:10px;">Añadir Administrador</h3>
+                        <form id="form-admin">
+                            <div class="form-group">
+                                <label>Nombre Completo</label>
+                                <input type="text" id="adm-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Usuario</label>
+                                <input type="text" id="adm-user" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" id="adm-pass" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Crear Administrador</button>
+                        </form>
+                    </div>
+                    <div style="flex: 2; min-width: 300px; overflow-x: auto;">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Usuario</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-user-list">
+                                <!-- Renderizado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>

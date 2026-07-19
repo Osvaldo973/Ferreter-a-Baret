@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Servicios | Ferretería Baret</title>
+    <meta name="description" content="Servicio a domicilio, plomería profesional, asesoría experta y renta de equipos. Solicita tu cotización por WhatsApp con Ferretería Baret.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-info">
+            <span><i class="fa-solid fa-phone"></i> (555) 123-4567</span>
+            <span><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</span>
+        </div>
+        <div class="container top-bar-links" style="justify-content: flex-end; display: flex;">
+            <a href="#">Ayuda</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="admin.html" style="color: var(--accent-orange);"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-hammer"></i>
+                Ferretería <span>Baret</span>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="servicios.html" class="active">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Nuestros Servicios</h1>
+                <p>Brindamos soluciones integrales y profesionales para asegurar el éxito de todos tus proyectos de construcción y plomería.</p>
+            </div>
+        </section>
+
+        <section class="services section-padding">
+            <div class="container">
+                <div class="section-title reveal">
+                    <span class="section-label">Soluciones a tu medida</span>
+                    <h2>Lo que ofrecemos</h2>
+                    <p>Servicios especializados pensados para contratistas y el hogar</p>
+                </div>
+                
+                <!-- Grid de Servicios Ampliado -->
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-faucet-drip"></i>
+                        <h3>Materiales de Plomería</h3>
+                        <p>Contamos con una amplia gama de tuberías PVC, conexiones, bombas de agua y griferías de marcas reconocidas para instalaciones residenciales e industriales.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <h3>Servicio a Domicilio</h3>
+                        <p>Entregamos tus materiales directamente en tu obra o domicilio en el menor tiempo posible, garantizando el cuidado de cada herramienta y material.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <h3>Asesoría Experta</h3>
+                        <p>Nuestro equipo de ingenieros y plomeros con experiencia te orientará para seleccionar los productos idóneos, optimizando tu presupuesto.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <h3>Renta de Equipos</h3>
+                        <p>¿Necesitas maquinaria temporal? Alquilamos taladros, martillos demoledores, mezcladoras de concreto y andamios por días o semanas.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-fill-drip"></i>
+                        <h3>Preparación de Pinturas</h3>
+                        <p>Contamos con sistema tintométrico computarizado para reproducir cualquier color exacto que necesites en bases acrílicas, de aceite o impermeabilizantes.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Garantía Extendida</h3>
+                        <p>Todos nuestros equipos y herramientas eléctricas cuentan con garantía certificada y soporte directo de fábrica para tu tranquilidad.</p>
+                    </div>
+                </div>
+
+                <!-- Formulario de Presupuesto (Estilo Serviport) -->
+                <div class="quote-section reveal">
+                    <h2>¿Necesitas Cotizar o Presupuestar?</h2>
+                    <p>Completa el formulario a continuación indicando los materiales o servicios que requieres y te enviaremos tu presupuesto formal directamente por WhatsApp.</p>
+                    <form id="form-presupuesto" class="quote-form">
+                        <div class="form-group">
+                            <label for="pres-nombre">Nombre Completo *</label>
+                            <input type="text" id="pres-nombre" class="form-control" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pres-telefono">Teléfono / WhatsApp *</label>
+                            <input type="tel" id="pres-telefono" class="form-control" placeholder="Ej. 809-555-1234" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pres-servicio">Servicio de Interés</label>
+                            <select id="pres-servicio" class="form-control">
+                                <option value="Materiales de Plomería">Materiales de Plomería</option>
+                                <option value="Materiales de Construcción">Materiales de Construcción</option>
+                                <option value="Renta de Equipos">Renta de Equipos</option>
+                                <option value="Preparación de Pintura">Preparación de Pintura</option>
+                                <option value="Asesoría Técnica">Asesoría Técnica / Cubicación</option>
+                                <option value="Otro">Otro servicio</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pres-detalles">Lista de Materiales / Detalles de Solicitud *</label>
+                            <textarea id="pres-detalles" class="form-control" placeholder="Describe aquí las herramientas, cantidad de cemento, medidas de tuberías PVC u otros materiales que necesitas cotizar..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp" style="margin-right:8px; font-size:1.2rem;"></i>Enviar Presupuesto por WhatsApp</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo footer-logo">
+                    <i class="fa-solid fa-hammer"></i>
+                    Ferretería <span>Baret</span>
+                </a>
+                <p>Tu socio confiable en materiales y herramientas de construcción, proporcionando soluciones de plomería y entregas a domicilio oportunas.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fa-solid fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul>
+                    <li>Lunes - Viernes: 8:00 AM - 6:00 PM</li>
+                    <li>Sábados: 8:00 AM - 2:00 PM</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Ferretería Baret. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Producto añadido al carrito</div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here via JS -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="checkout-form" id="checkout-form" style="display: none; margin-top: 15px;">
+                <input type="text" id="checkout-nombre" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="text" id="checkout-apellido" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="tel" id="checkout-telefono" placeholder="Teléfono" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" id="btn-comprar">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/18096090047" target="_blank" class="whatsapp-btn" aria-label="Chat en WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

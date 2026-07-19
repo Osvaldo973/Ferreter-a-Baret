@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos | Ferretería Baret</title>
+    <meta name="description" content="Encuentra herramientas profesionales, materiales de construcción, pinturas y plomería en el catálogo completo de Ferretería Baret.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container top-bar-info">
+            <span><i class="fa-solid fa-phone"></i> (555) 123-4567</span>
+            <span><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</span>
+        </div>
+        <div class="container top-bar-links" style="justify-content: flex-end; display: flex;">
+            <a href="#">Ayuda</a>
+            <a href="#">Rastrear Pedido</a>
+            <a href="admin.html" style="color: var(--accent-orange);"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        </div>
+    </div>
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-hammer"></i>
+                Ferretería <span>Baret</span>
+            </a>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="productos.html" class="active">Productos</a>
+                <a href="servicios.html">Servicios</a>
+                <a href="nosotros.html">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <div class="cart-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-banner">
+            <div class="container">
+                <h1>Catálogo de Productos</h1>
+                <p>Encuentra herramientas profesionales, plomería de calidad, pinturas y los materiales que necesitas para tus proyectos.</p>
+            </div>
+        </section>
+
+        <section class="products-catalog section-padding background-light">
+            <div class="container">
+                <!-- Buscador e Filtros estilo Ferremix/Gigante -->
+                <div class="catalog-controls reveal">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="search-input" placeholder="Buscar productos por nombre o categoría...">
+                    </div>
+                    <div class="filter-pills">
+                        <button class="filter-btn active" data-category="All">Todos</button>
+                        <button class="filter-btn" data-category="Herramientas">Herramientas</button>
+                        <button class="filter-btn" data-category="Plomería">Plomería</button>
+                        <button class="filter-btn" data-category="Pinturas">Pinturas</button>
+                    </div>
+                </div>
+
+                <!-- Grid de Productos -->
+                <div class="product-grid" id="product-grid">
+                    <!-- Los productos se inyectarán dinámicamente mediante script.js -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <a href="index.html" class="logo footer-logo">
+                    <i class="fa-solid fa-hammer"></i>
+                    Ferretería <span>Baret</span>
+                </a>
+                <p>Tu socio confiable en materiales y herramientas de construcción, proporcionando soluciones de plomería y entregas a domicilio oportunas.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="servicios.html">Servicios</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><i class="fa-solid fa-location-dot"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fa-solid fa-phone"></i> (555) 123-4567</li>
+                    <li><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Horario</h3>
+                <ul>
+                    <li>Lunes - Viernes: 8:00 AM - 6:00 PM</li>
+                    <li>Sábados: 8:00 AM - 2:00 PM</li>
+                    <li>Domingos: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Ferretería Baret. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Producto añadido al carrito</div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here via JS -->
+            <div class="empty-cart-msg">Tu carrito está vacío</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <div class="checkout-form" id="checkout-form" style="display: none; margin-top: 15px;">
+                <input type="text" id="checkout-nombre" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="text" id="checkout-apellido" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+                <input type="tel" id="checkout-telefono" placeholder="Teléfono" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
+            </div>
+            <button class="btn btn-primary w-100 mt-3" id="btn-comprar">Proceder al Pago</button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Widget -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/18096090047" target="_blank" class="whatsapp-btn" aria-label="Chat en WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
