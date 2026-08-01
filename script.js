@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeCartBtn = document.getElementById('close-cart');
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTotalPrice = document.getElementById('cart-total-price');
-    const btnComprar = document.getElementById('btn-comprar');
+    const btnCotizar = document.getElementById('btn-cotizar');
+    const btnFactura = document.getElementById('btn-factura');
     const checkoutForm = document.getElementById('checkout-form');
     const checkoutNombre = document.getElementById('checkout-nombre');
     const checkoutApellido = document.getElementById('checkout-apellido');
@@ -47,12 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sombra y posición del Navbar al hacer scroll
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            navbar.style.top = '0';
+        if (window.scrollY > 10) {
             navbar.style.boxShadow = '0 6px 20px rgba(30, 58, 138, 0.4)';
             navbar.style.padding = '10px 0';
         } else {
-            navbar.style.top = '40px';
             navbar.style.boxShadow = '0 4px 20px rgba(30, 58, 138, 0.3)';
             navbar.style.padding = '15px 0';
         }
@@ -93,15 +92,19 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('ferreteria_productos', JSON.stringify(products));
         }
 
-        renderProducts(products);
+        // Combinar con inventario
+        const inventoryItems = JSON.parse(localStorage.getItem('ferreteria_inventario')) || [];
+        const allProducts = [...products, ...inventoryItems];
+
+        renderProducts(allProducts);
         renderOfertas(products);
         renderRecomendados(products);
-        initSearchAndFilters(products);
+        initSearchAndFilters(allProducts);
         // Re-observar elementos reveal recién inyectados
         setTimeout(observeRevealElements, 100);
     }
 
-    function initSearchAndFilters(products) {
+    function initSearchAndFilters(allProducts) {
         const searchInput = document.getElementById('search-input');
         const filterBtns = document.querySelectorAll('.filter-btn');
         if (!searchInput && filterBtns.length === 0) return;
@@ -110,12 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let searchQuery = '';
 
         function filterAndRender() {
-            const filtered = products.filter(p => {
+            const filtered = allProducts.filter(p => {
                 const matchesCategory = (activeCategory === 'All' || p.category.toLowerCase() === activeCategory.toLowerCase());
                 const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.category.toLowerCase().includes(searchQuery.toLowerCase());
                 return matchesCategory && matchesSearch;
             });
             renderProducts(filtered);
+            // Re-observar elementos reveal tras renderizado
+            setTimeout(observeRevealElements, 100);
         }
 
         if (searchInput) {
@@ -126,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         filterBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', () => {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 activeCategory = btn.getAttribute('data-category');
@@ -157,14 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const displayPrice = (isOffer && product.discountPrice)
             ? product.discountPrice : product.price;
 
+        const productImageHTML = product.image
+            ? `<img src="${product.image}" alt="${product.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="placeholder-img" style="display:none;"><i class="fa-solid fa-box"></i></div>`
+            : `<div class="placeholder-img">
+                   <i class="fa-solid ${product.icon || 'fa-box'}"></i>
+               </div>`;
+
         return `
             <div class="product-card reveal">
                 ${badgeOferta}
                 ${badgeRec}
                 <div class="product-image">
-                    <div class="placeholder-img">
-                        <i class="fa-solid ${product.icon || 'fa-box'}"></i>
-                    </div>
+                    ${productImageHTML}
                 </div>
                 <div class="product-info">
                     <span class="category">${product.category}</span>
@@ -386,8 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
         cartTotalPrice.textContent = '$' + total.toFixed(2);
     }
 
-    // Proceder al Pago / WhatsApp
-    btnComprar.addEventListener('click', () => {
+    // Función compartida para procesar el pedido por WhatsApp
+    function procesarPedido(tipo) {
         if (cartItemsList.length === 0) {
             showToast('El carrito está vacío');
             return;
@@ -395,8 +404,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (checkoutForm.style.display === 'none') {
             checkoutForm.style.display = 'block';
-            btnComprar.textContent = 'Enviar Pedido por WhatsApp';
-            btnComprar.style.background = '#25D366';
+            // Guardar el tipo para cuando confirmen
+            checkoutForm.dataset.tipo = tipo;
         } else {
             const nombre = checkoutNombre.value.trim();
             const apellido = checkoutApellido.value.trim();
@@ -407,15 +416,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let mensaje = `Hola, soy ${nombre} ${apellido}.\nTeléfono: ${telefono}\nMe gustaría hacer el siguiente pedido:\n\n`;
-            let totalPedido = 0;
+            const tipoActual = checkoutForm.dataset.tipo || tipo;
+            const tipoTexto = tipoActual === 'factura' ? '🧾 *SOLICITUD DE FACTURA*' : '📋 *SOLICITUD DE COTIZACIÓN*';
 
+            let mensaje = `${tipoTexto} — Ferretería Baret\n\n`;
+            mensaje += `*Cliente:* ${nombre} ${apellido}\n`;
+            mensaje += `*Teléfono:* ${telefono}\n`;
+            mensaje += `*Retiro:* Presencial en tienda\n\n`;
+            mensaje += `*Productos solicitados:*\n`;
+
+            let totalPedido = 0;
             cartItemsList.forEach(item => {
                 mensaje += `- 1x ${item.name} ($${item.price.toFixed(2)})\n`;
                 totalPedido += item.price;
             });
 
-            mensaje += `\n*Total a pagar: $${totalPedido.toFixed(2)}*`;
+            mensaje += `\n*Total: $${totalPedido.toFixed(2)}*`;
 
             const numeroWhatsApp = '18096090047';
             window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
@@ -429,13 +445,21 @@ document.addEventListener('DOMContentLoaded', () => {
             checkoutNombre.value = '';
             checkoutApellido.value = '';
             checkoutTelefono.value = '';
-            btnComprar.textContent = 'Proceder al Pago';
-            btnComprar.style.background = '';
 
             toggleCart();
-            showToast('¡Pedido enviado por WhatsApp!');
+            showToast(`<i class="fa-solid fa-circle-check"></i> ¡Solicitud enviada por WhatsApp!`);
         }
-    });
+    }
+
+    // Botón Cotizar
+    if (btnCotizar) {
+        btnCotizar.addEventListener('click', () => procesarPedido('cotizar'));
+    }
+
+    // Botón Factura
+    if (btnFactura) {
+        btnFactura.addEventListener('click', () => procesarPedido('factura'));
+    }
 
     // Toast
     function showToast(message) {

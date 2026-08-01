@@ -12,18 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="top-bar">
-        <div class="container top-bar-info">
-            <span><i class="fa-solid fa-phone"></i> (555) 123-4567</span>
-            <span><i class="fa-solid fa-envelope"></i> ventas@ferreteriabaret.com</span>
-        </div>
-        <div class="container top-bar-links" style="justify-content: flex-end; display: flex;">
-            <a href="#">Ayuda</a>
-            <a href="#">Rastrear Pedido</a>
-            <a href="admin.html" style="color: var(--accent-orange);"><i class="fa-solid fa-user-shield"></i> Admin</a>
-        </div>
-    </div>
-    <header class="navbar">
+    <header class="navbar" style="top: 0;">
         <div class="container nav-content">
             <a href="index.html" class="logo">
                 <i class="fa-solid fa-hammer"></i>
@@ -144,7 +133,11 @@
                 <input type="text" id="checkout-apellido" placeholder="Apellido" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
                 <input type="tel" id="checkout-telefono" placeholder="Teléfono" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: var(--border-radius); font-family: inherit;">
             </div>
-            <button class="btn btn-primary w-100 mt-3" id="btn-comprar">Proceder al Pago</button>
+            <p class="pickup-notice"><i class="fa-solid fa-store"></i> Retiro <strong>presencial</strong> en tienda únicamente</p>
+            <div class="checkout-buttons">
+                <button class="btn btn-cotizar w-100" id="btn-cotizar"><i class="fa-solid fa-file-invoice"></i> Cotizar</button>
+                <button class="btn btn-factura w-100" id="btn-factura"><i class="fa-solid fa-receipt"></i> Factura</button>
+            </div>
         </div>
     </div>
 

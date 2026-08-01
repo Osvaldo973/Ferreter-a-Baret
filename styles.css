@@ -212,7 +212,7 @@ a {
 ======================== */
 .navbar {
     position: fixed;
-    top: 40px;
+    top: 0;
     left: 0;
     width: 100%;
     background: linear-gradient(135deg, var(--primary-blue) 0%, #1e40af 100%);
@@ -696,9 +696,10 @@ a {
 }
 
 .brand-card img {
-    max-height: 50px;
-    max-width: 120px;
+    max-height: 90px;
+    max-width: 160px;
     object-fit: contain;
+    width: 100%;
 }
 
 .brand-card .brand-name {
@@ -711,9 +712,86 @@ a {
 }
 
 .brand-card i {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: var(--accent-blue);
     opacity: 0.7;
+}
+
+/* ========================
+   Checkout Buttons
+======================== */
+.pickup-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+    color: var(--primary-blue);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    margin-top: 12px;
+}
+
+.pickup-notice i {
+    color: var(--accent-blue);
+    font-size: 1rem;
+}
+
+.checkout-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-cotizar {
+    background: linear-gradient(135deg, #0EA5E9, #0284C7);
+    color: white;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-cotizar:hover {
+    background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(14, 165, 233, 0.45);
+}
+
+.btn-factura {
+    background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-factura:hover {
+    background: linear-gradient(135deg, var(--accent-blue-light), var(--accent-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.45);
 }
 
 /* Empty state para secciones dinámicas */
