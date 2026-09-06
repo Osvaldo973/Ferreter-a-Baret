@@ -79,20 +79,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================
     // Productos (Catálogo Principal)
     // ========================
-    function initProducts() {
-        let products = JSON.parse(localStorage.getItem('ferreteria_productos'));
+    async function initProducts() {
+        let products = [];
 
-        if (!products || products.length === 0) {
-            products = [
-                { id: 1, name: "Set de Llaves Profesionales", category: "Herramientas", price: 45.00, icon: "fa-wrench", isRecommended: true, isOffer: false, discountPrice: null },
-                { id: 2, name: "Fregadero de Acero Inoxidable", category: "Plomería", price: 120.00, icon: "fa-sink", isRecommended: false, isOffer: true, discountPrice: 99.00 },
-                { id: 3, name: "Cubeta de Pintura Acrílica (Blanco)", category: "Pinturas", price: 55.00, icon: "fa-paint-roller", isRecommended: true, isOffer: false, discountPrice: null },
-                { id: 4, name: "Kit de Reparación de Tuberías", category: "Plomería", price: 25.00, icon: "fa-screwdriver-wrench", isRecommended: false, isOffer: true, discountPrice: 18.00 }
-            ];
-            localStorage.setItem('ferreteria_productos', JSON.stringify(products));
+        if (window.supabaseClient) {
+            try {
+                const { data, error } = await supabaseClient.from('productos').select('*').order('created_at', { ascending: false });
+                if (!error && data && data.length > 0) {
+                    products = data.map(p => ({
+                        id: p.id,
+                        name: p.nombre,
+                        category: p.categoria,
+                        price: parseFloat(p.precio),
+                        discountPrice: p.precio_oferta ? parseFloat(p.precio_oferta) : null,
+                        isOffer: !!p.oferta,
+                        isRecommended: !!p.destacado || !!p.popular,
+                        image: p.imagen || '',
+                        badge: p.badge || ''
+                    }));
+                }
+            } catch (err) {
+                console.error('Error al obtener productos de Supabase:', err);
+            }
         }
 
-        // Combinar con inventario
+        // Fallback a localStorage si no se obtuvieron datos de Supabase
+        if (products.length === 0) {
+            products = JSON.parse(localStorage.getItem('ferreteria_productos')) || [];
+            if (products.length === 0) {
+                products = [
+                    { id: 1, name: "Set de Llaves Profesionales", category: "Herramientas", price: 45.00, icon: "fa-wrench", isRecommended: true, isOffer: false, discountPrice: null },
+                    { id: 2, name: "Fregadero de Acero Inoxidable", category: "Plomería", price: 120.00, icon: "fa-sink", isRecommended: false, isOffer: true, discountPrice: 99.00 },
+                    { id: 3, name: "Cubeta de Pintura Acrílica (Blanco)", category: "Pinturas", price: 55.00, icon: "fa-paint-roller", isRecommended: true, isOffer: false, discountPrice: null },
+                    { id: 4, name: "Kit de Reparación de Tuberías", category: "Plomería", price: 25.00, icon: "fa-screwdriver-wrench", isRecommended: false, isOffer: true, discountPrice: 18.00 }
+                ];
+                localStorage.setItem('ferreteria_productos', JSON.stringify(products));
+            }
+        }
+
+        // Combinar con inventario local si aplica
         const inventoryItems = JSON.parse(localStorage.getItem('ferreteria_inventario')) || [];
         const allProducts = [...products, ...inventoryItems];
 
@@ -100,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderOfertas(products);
         renderRecomendados(products);
         initSearchAndFilters(allProducts);
-        // Re-observar elementos reveal recién inyectados
         setTimeout(observeRevealElements, 100);
     }
 

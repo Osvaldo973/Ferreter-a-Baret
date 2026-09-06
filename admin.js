@@ -267,8 +267,49 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnRemoveInvImage.addEventListener('click', removeInvImage);
 
+    // --- Supabase Data Handlers ---
+    async function fetchProductsFromSupabase() {
+        if (!window.supabaseClient) return;
+        try {
+            const { data, error } = await supabaseClient.from('productos').select('*').order('created_at', { ascending: false });
+            if (!error && data) {
+                products = data.map(p => ({
+                    id: p.id,
+                    name: p.nombre,
+                    category: p.categoria,
+                    price: parseFloat(p.precio),
+                    discountPrice: p.precio_oferta ? parseFloat(p.precio_oferta) : null,
+                    isOffer: !!p.oferta,
+                    isRecommended: !!p.destacado || !!p.popular,
+                    image: p.imagen || '',
+                    badge: p.badge || ''
+                }));
+                localStorage.setItem('ferreteria_productos', JSON.stringify(products));
+            }
+        } catch (err) {
+            console.error('Error al cargar productos de Supabase:', err);
+        }
+    }
+
+    async function fetchBrandsFromSupabase() {
+        if (!window.supabaseClient) return;
+        try {
+            const { data, error } = await supabaseClient.from('marcas').select('*').order('created_at', { ascending: false });
+            if (!error && data) {
+                brands = data.map(b => ({
+                    id: b.id,
+                    name: b.nombre,
+                    logo: b.logo || ''
+                }));
+                localStorage.setItem('ferreteria_marcas', JSON.stringify(brands));
+            }
+        } catch (err) {
+            console.error('Error al cargar marcas de Supabase:', err);
+        }
+    }
+
     // --- Auth Logic ---
-    function checkAuth() {
+    async function checkAuth() {
         const loggedUser = sessionStorage.getItem('ferreteria_logged_in');
         if (loggedUser) {
             loginSection.style.display = 'none';
@@ -283,6 +324,11 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAdmins();
             renderBrands();
             renderInventory();
+
+            await fetchProductsFromSupabase();
+            renderProducts();
+            await fetchBrandsFromSupabase();
+            renderBrands();
         } else {
             loginSection.style.display = 'block';
             dashboardSection.style.display = 'none';
@@ -364,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    formProduct.addEventListener('submit', (e) => {
+    formProduct.addEventListener('submit', async (e) => {
         e.preventDefault();
         const id = document.getElementById('prod-id').value;
         const name = document.getElementById('prod-name').value;
@@ -380,12 +426,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const productData = { name, price, category, icon, isRecommended, isOffer, discountPrice, image };
 
-        if (id) {
-            const index = products.findIndex(p => p.id === parseInt(id));
-            if (index !== -1) products[index] = { id: parseInt(id), ...productData };
+        if (window.supabaseClient) {
+            try {
+                const supabasePayload = {
+                    nombre: name,
+                    categoria: category,
+                    precio: price,
+                    precio_oferta: discountPrice,
+                    oferta: isOffer,
+                    destacado: isRecommended,
+                    imagen: image
+                };
+
+                if (id) {
+                    await supabaseClient.from('productos').update(supabasePayload).eq('id', parseInt(id));
+                } else {
+                    await supabaseClient.from('productos').insert([supabasePayload]);
+                }
+                await fetchProductsFromSupabase();
+            } catch (err) {
+                console.error('Error al guardar en Supabase:', err);
+            }
         } else {
-            const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-            products.push({ id: newId, ...productData });
+            if (id) {
+                const index = products.findIndex(p => p.id === parseInt(id));
+                if (index !== -1) products[index] = { id: parseInt(id), ...productData };
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, ...productData });
+            }
         }
 
         saveProducts();
@@ -423,9 +492,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.deleteProduct = function(id) {
+    window.deleteProduct = async function(id) {
         if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-            products = products.filter(p => p.id !== parseInt(id));
+            if (window.supabaseClient) {
+                try {
+                    await supabaseClient.from('productos').delete().eq('id', parseInt(id));
+                    await fetchProductsFromSupabase();
+                } catch (err) {
+                    console.error('Error al eliminar en Supabase:', err);
+                }
+            } else {
+                products = products.filter(p => p.id !== parseInt(id));
+            }
             saveProducts();
             
             // If editing the one we deleted, reset form
@@ -655,19 +733,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    formBrand.addEventListener('submit', (e) => {
+    formBrand.addEventListener('submit', async (e) => {
         e.preventDefault();
         const id = document.getElementById('brand-id').value;
         const name = document.getElementById('brand-name').value.trim();
         const logoUrl = brandLogo.value.trim();
         const logo = currentBrandLogoBase64 || logoUrl || '';
 
-        if (id) {
-            const index = brands.findIndex(b => b.id === parseInt(id));
-            if (index !== -1) brands[index] = { id: parseInt(id), name, logo };
+        if (window.supabaseClient) {
+            try {
+                const supabasePayload = {
+                    nombre: name,
+                    categoria: 'General',
+                    logo: logo
+                };
+                if (id) {
+                    await supabaseClient.from('marcas').update(supabasePayload).eq('id', parseInt(id));
+                } else {
+                    await supabaseClient.from('marcas').insert([supabasePayload]);
+                }
+                await fetchBrandsFromSupabase();
+            } catch (err) {
+                console.error('Error al guardar marca en Supabase:', err);
+            }
         } else {
-            const newId = brands.length > 0 ? Math.max(...brands.map(b => b.id)) + 1 : 1;
-            brands.push({ id: newId, name, logo });
+            if (id) {
+                const index = brands.findIndex(b => b.id === parseInt(id));
+                if (index !== -1) brands[index] = { id: parseInt(id), name, logo };
+            } else {
+                const newId = brands.length > 0 ? Math.max(...brands.map(b => b.id)) + 1 : 1;
+                brands.push({ id: newId, name, logo });
+            }
         }
         saveBrands();
         resetBrandForm();
@@ -694,9 +790,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.deleteBrand = function(id) {
+    window.deleteBrand = async function(id) {
         if (confirm('¿Eliminar esta marca?')) {
-            brands = brands.filter(b => b.id !== parseInt(id));
+            if (window.supabaseClient) {
+                try {
+                    await supabaseClient.from('marcas').delete().eq('id', parseInt(id));
+                    await fetchBrandsFromSupabase();
+                } catch (err) {
+                    console.error('Error al eliminar marca en Supabase:', err);
+                }
+            } else {
+                brands = brands.filter(b => b.id !== parseInt(id));
+            }
             saveBrands();
         }
     };
