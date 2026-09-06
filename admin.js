@@ -314,12 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (loggedUser) {
             loginSection.style.display = 'none';
             dashboardSection.style.display = 'block';
-            
+
             const currentAdmin = admins.find(a => a.user === loggedUser);
             if (currentAdmin) {
                 currentAdminName.textContent = currentAdmin.name;
             }
-            
+
             renderProducts();
             renderAdmins();
             renderBrands();
@@ -382,8 +382,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const badges = [];
             if (p.isRecommended) badges.push('<span style="background:#DBEAFE; color:#1E40AF; padding:2px 7px; border-radius:10px; font-size:0.75rem; margin-right:4px;">⭐ Recomendado</span>');
             if (p.isOffer) badges.push('<span style="background:#FEF3C7; color:#92400E; padding:2px 7px; border-radius:10px; font-size:0.75rem;">🏷️ Oferta</span>');
-            
-            const imageOrIcon = p.image 
+
+            const imageOrIcon = p.image
                 ? `<img src="${p.image}" style="height:30px; width:30px; object-fit:cover; border-radius:4px; margin-right:8px; vertical-align:middle;" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';"><i class="fa-solid fa-box" style="display:none; color:var(--text-muted); margin-right:8px; vertical-align:middle;"></i>`
                 : `<i class="fa-solid ${p.icon || 'fa-box'}" style="color:var(--text-muted); margin-right:8px; vertical-align:middle;"></i>`;
 
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetProductForm();
     });
 
-    window.editProduct = function(id) {
+    window.editProduct = function (id) {
         const product = products.find(p => p.id === parseInt(id));
         if (product) {
             document.getElementById('prod-id').value = product.id;
@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
             offerPriceGroup.style.display = product.isOffer ? 'block' : 'none';
             productFormTitle.textContent = 'Editar Producto';
             btnCancelProd.style.display = 'inline-block';
-            
+
             if (product.image) {
                 if (product.image.startsWith('data:')) {
                     currentProductImageBase64 = product.image;
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.deleteProduct = async function(id) {
+    window.deleteProduct = async function (id) {
         if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
             if (window.supabaseClient) {
                 try {
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 products = products.filter(p => p.id !== parseInt(id));
             }
             saveProducts();
-            
+
             // If editing the one we deleted, reset form
             if (document.getElementById('prod-id').value === id.toString()) {
                 resetProductForm();
@@ -536,10 +536,10 @@ document.addEventListener('DOMContentLoaded', () => {
         adminUserList.innerHTML = '';
         admins.forEach(a => {
             const tr = document.createElement('tr');
-            
+
             // Check if current user
             const isCurrent = sessionStorage.getItem('ferreteria_logged_in') === a.user;
-            
+
             tr.innerHTML = `
                 <td style="font-weight:600;">
                     ${a.name} ${isCurrent ? '<span style="color:#10B981; font-size:0.8em; margin-left:5px;">(Tú)</span>' : ''}
@@ -569,12 +569,12 @@ document.addEventListener('DOMContentLoaded', () => {
         formAdmin.reset();
     });
 
-    window.deleteAdmin = function(user) {
+    window.deleteAdmin = function (user) {
         if (admins.length <= 1) {
             alert('No puedes eliminar al último administrador del sistema.');
             return;
         }
-        
+
         const isCurrent = sessionStorage.getItem('ferreteria_logged_in') === user;
         if (isCurrent && !confirm('Estás a punto de eliminar tu propia cuenta. Serás desconectado. ¿Continuar?')) {
             return;
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function continueDelete() {
             admins = admins.filter(a => a.user !== user);
             saveAdmins();
-            
+
             if (isCurrent) {
                 sessionStorage.removeItem('ferreteria_logged_in');
                 checkAuth();
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetInvForm();
     });
 
-    window.editInventory = function(id) {
+    window.editInventory = function (id) {
         const item = inventory.find(p => p.id === parseInt(id));
         if (item) {
             document.getElementById('inv-id').value = item.id;
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.deleteInventory = function(id) {
+    window.deleteInventory = function (id) {
         if (confirm('¿Eliminar este producto del inventario?')) {
             inventory = inventory.filter(p => p.id !== parseInt(id));
             if (document.getElementById('inv-id').value === id.toString()) {
@@ -769,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetBrandForm();
     });
 
-    window.editBrand = function(id) {
+    window.editBrand = function (id) {
         const brand = brands.find(b => b.id === parseInt(id));
         if (brand) {
             document.getElementById('brand-id').value = brand.id;
@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    window.deleteBrand = async function(id) {
+    window.deleteBrand = async function (id) {
         if (confirm('¿Eliminar esta marca?')) {
             if (window.supabaseClient) {
                 try {

@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             mensaje += `\n*Total: $${totalPedido.toFixed(2)}*`;
 
-            const numeroWhatsApp = '18096090047';
+            const numeroWhatsApp = '18095988068';
             window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
 
             cartItemsList = [];
@@ -517,7 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mensaje += `*Servicio de Interés:* ${servicio}\n\n`;
             mensaje += `*Detalles / Materiales a cotizar:*\n${detalles}\n`;
 
-            const numeroWhatsApp = '18096090047';
+            const numeroWhatsApp = '18095988068';
             window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
 
             formPresupuesto.reset();
