@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
+  <!-- Hammer & Wrench Icon -->
+  <path fill="url(#accentGrad)" d="M428.1 144.6c-17.7-17.7-46.5-17.7-64.2 0l-50.7 50.7 44.5 44.5 50.4-50.4c17.7-17.7 17.7-46.5 0-64.8zM286.7 222.1l-44.5-44.5L83.9 335.9c-11.7 11.7-11.7 30.7 0 42.4l49.8 49.8c11.7 11.7 30.7 11.7 42.4 0l110.6-106z" />
+  <path fill="#FFFFFF" d="M198 128l32 32-24 24 24 24-32 32-72-72 72-40zm116 116l40-40 72 72-32 32-24-24-24 24-32-32z" opacity="0.9"/>
+  <!-- House outline -->
+  <path fill="none" stroke="#F97316" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" d="M128 200L256 96l128 104v192a32 32 0 01-32 32H160a32 32 0 01-32-32V200z" />
+</svg>
