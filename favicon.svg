@@ -1,66 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <!-- Royal Blue Gradient -->
-    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E3A8A"/>
-      <stop offset="50%" stop-color="#2563EB"/>
-      <stop offset="100%" stop-color="#1D4ED8"/>
-    </linearGradient>
+  <!-- Chimney -->
+  <rect x="365" y="65" width="42" height="110" fill="#1C5279" rx="4"/>
 
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#F1F5F9"/>
-    </linearGradient>
-  </defs>
+  <!-- Roof (Dark Blue) -->
+  <path fill="#1C5279" d="M 256 35 L 20 215 C 10 223 20 245 38 245 L 70 220 L 256 70 L 442 220 L 474 245 C 492 245 502 223 492 215 Z"/>
 
-  <!-- Circular Badge Background -->
-  <circle cx="256" cy="256" r="248" fill="url(#bgGrad)" stroke="url(#blueGrad)" stroke-width="16"/>
+  <!-- Inner Roof White Border & House Body (Blue) -->
+  <path fill="#2B78B4" stroke="#FFFFFF" stroke-width="12" stroke-linejoin="round" d="M 72 205 L 256 58 L 440 205 V 450 A 24 24 0 0 1 416 474 H 96 A 24 24 0 0 1 72 450 Z"/>
 
-  <g fill="url(#blueGrad)">
-    <!-- Gear Arch (Top) -->
-    <path d="M 120 220 A 150 150 0 0 1 392 220" fill="none" stroke="url(#blueGrad)" stroke-width="20" stroke-linecap="round"/>
-    
-    <!-- Gear Teeth -->
-    <path d="M 140 185 L 125 155 L 145 145 L 160 175 Z"/>
-    <path d="M 185 145 L 180 115 L 202 110 L 207 140 Z"/>
-    <path d="M 240 125 L 245 95 L 267 95 L 272 125 Z"/>
-    <path d="M 305 140 L 310 110 L 332 115 L 327 145 Z"/>
-    <path d="M 352 175 L 367 145 L 387 155 L 372 185 Z"/>
+  <!-- White Crossed Tools Emblem inside House -->
+  <!-- Wrench -->
+  <g transform="translate(256, 325) rotate(-45)">
+    <path fill="#FFFFFF" d="M -115 -25 C -115 -55 -85 -60 -55 -50 L -55 -30 C -75 -35 -90 -26 -90 -8 C -90 10 -75 18 -55 12 L -55 32 C -85 42 -115 35 -115 5 Z"/>
+    <rect x="-65" y="-14" width="165" height="28" fill="#FFFFFF" rx="6"/>
+    <rect x="-35" y="-6" width="60" height="12" fill="#2B78B4" rx="3"/>
+    <circle cx="110" cy="0" r="32" fill="#FFFFFF"/>
+    <circle cx="110" cy="0" r="16" fill="#2B78B4"/>
+  </g>
 
-    <!-- Bottom Circular Arc -->
-    <path d="M 120 292 A 150 150 0 0 0 392 292" fill="none" stroke="url(#blueGrad)" stroke-width="20" stroke-linecap="round"/>
-
-    <!-- Wrench (Horizontal) -->
-    <!-- Wrench Left Jaw -->
-    <path d="M 50 256 C 50 220 80 215 110 225 L 110 242 C 90 237 72 242 72 256 C 72 270 90 275 110 270 L 110 287 C 80 297 50 292 50 256 Z"/>
-    
-    <!-- Wrench Shaft -->
-    <rect x="105" y="240" width="280" height="32" rx="6"/>
-    <rect x="130" y="248" width="80" height="16" rx="4" fill="#FFFFFF"/>
-
-    <!-- Wrench Right Box Ring End -->
-    <circle cx="410" cy="256" r="42"/>
-    <circle cx="410" cy="256" r="22" fill="#FFFFFF"/>
-    <!-- Star teeth in ring -->
-    <path d="M 410 230 L 416 244 L 430 244 L 419 253 L 423 267 L 410 258 L 397 267 L 401 253 L 390 244 L 404 244 Z" fill="url(#blueGrad)"/>
-
-    <!-- Hand Gripping (Fist Center) -->
-    <!-- Wrist Base -->
-    <path d="M 215 320 C 215 360 225 410 256 410 C 287 410 297 360 297 320 Z"/>
-    <path d="M 210 320 L 210 400 A 46 46 0 0 0 302 400 L 302 320 Z" fill="#FFFFFF"/>
-    <path d="M 210 320 L 210 400 A 46 46 0 0 0 302 400 L 302 320 Z" fill="none" stroke="url(#blueGrad)" stroke-width="16" stroke-linejoin="round"/>
-
-    <!-- Knuckles & Fingers Wraparound -->
-    <!-- Index Finger -->
-    <rect x="212" y="210" width="22" height="60" rx="11"/>
-    <!-- Middle Finger -->
-    <rect x="236" y="202" width="22" height="68" rx="11"/>
-    <!-- Ring Finger -->
-    <rect x="260" y="206" width="22" height="64" rx="11"/>
-    <!-- Pinky Finger -->
-    <rect x="284" y="216" width="22" height="54" rx="11"/>
-
-    <!-- Thumb Wrap -->
-    <path d="M 200 270 C 190 240 215 220 230 240 C 220 260 210 280 200 270 Z"/>
+  <!-- Hammer -->
+  <g transform="translate(256, 325) rotate(45)">
+    <rect x="-135" y="-14" width="225" height="28" fill="#FFFFFF" rx="6"/>
+    <path fill="#FFFFFF" d="M 70 -42 L 125 -42 L 125 -15 L 105 -15 L 105 15 L 125 15 L 125 42 L 70 42 C 60 20 60 -20 70 -42 Z"/>
+    <path fill="#FFFFFF" d="M 60 -36 C 30 -42 0 -25 -20 0 C 0 -10 30 -16 60 -16 Z"/>
   </g>
 </svg>
