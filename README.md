@@ -29,7 +29,7 @@ Bienvenido al repositorio oficial de **Ferretería Baret**, ubicada en **Los Fra
 - **Dirección**: Los Frailes 2do, Santo Domingo Este, República Dominicana.
 - **Teléfono / WhatsApp**: [(809) 598-8068](https://wa.me/18095988068)
 - **Horario**:
-  - Lunes a Viernes: 7:30 AM - 6:00 PM
+  - Lunes a Viernes: 8:00 AM - 6:00 PM
   - Sábados: 8:00 AM - 5:00 PM
 
 ---
